@@ -33,6 +33,8 @@ var map=document.createElement("div");
 document.body.appendChild(map);
 map.setAttribute("id","wiseplot"); 
 
+var datapath = ()
+
 var config = { 
   width: 900,           // Default width, 0 = full parent element width; 
                       // height is determined by projection
@@ -71,7 +73,7 @@ var config = {
                       // Default: desig or empty string for designations, other languages as used anywhere else
   culture: "",        // Source of constellations and star names, default "iau", other: "cn" Traditional Chinese
   container:"wiseplot",   // ID of parent element, e.g. div, null = html-body
-  datapath: "browser.runtime.getURL(data/)",  // Path/URL to data files, empty = subfolder 'data'
+  datapath: browser.runtime.getURL(data/),  // Path/URL to data files, empty = subfolder 'data'
   stars: {
     show: true,    // Show stars
     limit: 6,      // Show only stars brighter than limit magnitude
