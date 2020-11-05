@@ -24,6 +24,9 @@
             "matches":  ["*://byw.tools/wiseview-v2"],
             "js": [
                 "lib/browser-polyfill.min.js",
+				"lib/d3.js",
+				"lib/d3.geo.projection.js",
+				"lib/celestial.js",
                 "script/wiseplot.js"
             ]
         }
