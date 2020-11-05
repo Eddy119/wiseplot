@@ -1,0 +1,36 @@
+{
+    "manifest_version": 2,
+
+    "name": "wiseplot",
+    "version": "0.0.1",
+    "author": "Zack Guard <zack@zackguard.com>",
+	"description": "the aim is to store all your past wiseviews and plot them on the d3-celestial star map... if only eddy knew how to code.",
+
+    "browser_specific_settings": {
+        "gecko": {
+            "id": "poopy@zackguard.com",
+            "strict_min_version": "53.0"
+        }
+    },
+
+    "permissions": [
+        "storage",
+        "downloads",
+		"activeTab,"
+    ],      
+
+    "content_scripts": [
+        {
+            "matches":  ["*://byw.tools/wiseview-v2"],
+            "js": [
+                "lib/browser-polyfill.min.js",
+                "script/wiseplot.js"
+            ]
+        }
+    ],
+
+    "browser_action": {
+        "default_title": "wiseplot",
+        "default_popup": "popup/popup.html"
+    }
+}
