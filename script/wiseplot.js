@@ -33,8 +33,6 @@ var map=document.createElement("div");
 document.body.appendChild(map);
 map.setAttribute("id","wiseplot"); 
 
-var datapath = ()
-
 var config = { 
   width: 900,           // Default width, 0 = full parent element width; 
                       // height is determined by projection
