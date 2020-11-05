@@ -71,7 +71,7 @@ var config = {
                       // Default: desig or empty string for designations, other languages as used anywhere else
   culture: "",        // Source of constellations and star names, default "iau", other: "cn" Traditional Chinese
   container:"wiseplot",   // ID of parent element, e.g. div, null = html-body
-  datapath: browser.runtime.getURL(data/),  // Path/URL to data files, empty = subfolder 'data'
+  datapath: "data/",  // Path/URL to data files, empty = subfolder 'data'
   stars: {
     show: true,    // Show stars
     limit: 6,      // Show only stars brighter than limit magnitude
@@ -209,3 +209,5 @@ var config = {
 
 // Display map with the configuration above or any subset thereof
 Celestial.display(config);
+
+Celestial.add({file:string, type:{"type":"Point","coordinates":[0,0]}}); //idk
