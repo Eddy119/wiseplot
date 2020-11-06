@@ -5,6 +5,9 @@ const fs = require("fs");
 
 const deps = [
     "https://unpkg.com/webextension-polyfill@0.6.0/dist/browser-polyfill.min.js",
+    "https://cdn.jsdelivr.net/gh/ofrohn/d3-celestial/celestial.js",
+    "https://cdn.jsdelivr.net/gh/ofrohn/d3-celestial/lib/d3.min.js",
+    "https://cdn.jsdelivr.net/gh/ofrohn/d3-celestial/lib/d3.geo.projection.min.js",
 ];
 
 try {
