@@ -17,7 +17,8 @@
         "storage",
         "downloads",
         "activeTab",
-        "unlimitedStorage"
+        "unlimitedStorage",
+        "*://ofrohn.github.io/*"
     ],      
 
     "content_scripts": [
