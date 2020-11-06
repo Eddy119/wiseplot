@@ -65,7 +65,8 @@ console.log("Celestial is:", Celestial);
         mousepos.textContent = inv;
     }
     document.getElementById("wiseplot").addEventListener("mousemove", getPosition, false);
-    
+
+// below is parky poop code, for archive   
     //     const mousepos=document.createElement("div");
 //     // Element.textContent = getPosition;
 //     pawnstars.parentElement.insertBefore(mousepos, pawnstars);
@@ -82,8 +83,6 @@ console.log("Celestial is:", Celestial);
 //      }
 //     document.getElementById("wiseplot").addEventListener("mousemove", getPosition, false);
 
-
-    
     const config = {
         width: 900,
         center: [-65, 0],
