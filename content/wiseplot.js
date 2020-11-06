@@ -58,13 +58,15 @@ console.log("Celestial is:", Celestial);
     mousepos.setAttribute("id","mousepos");
     
     function getPosition(e) {
-        const xneg = e.offsetX;
+        const x = e.offsetX;
         const y = e.offsetY;
-        if (xneg < 0)
-        {
-            var x = 360 + xneg
-        }
-        else {var x = xneg};
+        // let x;
+        // if (xneg < 0)
+        // {
+        //     x = 360 + xneg
+        // }
+        // else {x = xneg};
+        // console.log(x);
         const inv = Celestial.mapProjection.invert([x, y]);
         mousepos.textContent = inv;
 // [right ascension -180...180 degrees, declination -90...90 degrees]
