@@ -58,8 +58,13 @@ console.log("Celestial is:", Celestial);
     mousepos.setAttribute("id","mousepos");
     
     function getPosition(e) {
-        const x = e.offsetX;
+        const xneg = e.offsetX;
         const y = e.offsetY;
+        if (xneg < 0)
+        {
+            var x = 360 + xneg
+        }
+        else {var x = xneg};
         const inv = Celestial.mapProjection.invert([x, y]);
         mousepos.textContent = inv;
 // [right ascension -180...180 degrees, declination -90...90 degrees]
@@ -71,7 +76,7 @@ console.log("Celestial is:", Celestial);
         projection: "orthographic",
         center: [-65, 0],
         container: "wiseplot",
-        // datapath: "https://ofrohn.github.io/data/",
+        datapath: "https://ofrohn.github.io/data/",
         form: true,
         formFields: {"location": true,  // Set visiblity for each group of fields with the respective id
                "general": true,  
