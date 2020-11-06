@@ -16,7 +16,8 @@
     "permissions": [
         "storage",
         "downloads",
-		"activeTab"
+        "activeTab",
+        "unlimitedStorage"
     ],      
 
     "content_scripts": [
@@ -39,5 +40,10 @@
     "browser_action": {
         "default_title": "wiseplot",
         "default_popup": "popup/popup.html"
+    },
+
+    "options_ui": {
+        "page": "options/options.html",
+        "browser_style": false
     }
 }

@@ -3,10 +3,10 @@ console.log("Celestial is:", Celestial);
 
 (async () => {
     /* load and update param history */
-    const { paramsHistory } = await browser.storage.sync.get({ "paramsHistory": [] });
+    const { paramsHistory } = await browser.storage.local.get({ "paramsHistory": [] });
     console.log(`Loaded ${paramsHistory.length} existing entries.`);
 
-    let jsonShapes;
+    let jsonShapes, currentShapes;
     
     function updateParamsHistory() {
         const { ra, dec, size } = window.location.hash
@@ -20,7 +20,7 @@ console.log("Celestial is:", Celestial);
             ra, dec, size,
             _time: Date.now(),
         });
-        browser.storage.sync.set({ paramsHistory })
+        browser.storage.local.set({ paramsHistory })
             .then(() => {
                 console.log("Wrote to paramsHistory:", { ra, dec, size });
             })
@@ -48,7 +48,9 @@ console.log("Celestial is:", Celestial);
     /* draw */
 
     var map=document.createElement("div"); 
-    document.body.appendChild(map);
+    // document.body.appendChild(map);
+    const pawnstars = document.getElementById("pawnstarsLink");
+    pawnstars.parentElement.insertBefore(map, pawnstars);
     map.setAttribute("id","wiseplot"); 
 
     const config = {
@@ -58,32 +60,22 @@ console.log("Celestial is:", Celestial);
         datapath: "https://ofrohn.github.io/data/",
     };
 
-    function hour2degree(ra) { 
-        return ra > 12 ? (ra - 24) * 15 : ra * 15;
-    }
-
     // Display map with the configuration above or any subset thereof
     // Celestial.display(config);
     
     /* line drawing stuff */
     
     jsonShapes = {
-        "type":"FeatureCollection",
+        "type": "FeatureCollection",
         // this is an array, add as many objects as you want
-        "features":[
+        "features": [
             {
-                "type":"Feature",
-                "id":"SummerTriangle",
-                "geometry":{
+                "type": "Feature",
+                "id": "History",
+                "geometry": {
                     // the line object as an array of point coordinates, 
                     // always as [ra -180..180 degrees, dec -90..90 degrees]
-                    "type":"MultiLineString",
-                    // "coordinates":[[
-                    //     [-80.7653, 38.7837],
-                    //     [-62.3042, 8.8683],
-                    //     [-49.642, 45.2803],
-                    //     [-80.7653, 38.7837]
-                    // ]],
+                    "type": "MultiLineString",
                     coordinates: paramsHistory
                         .map(({ ra, dec, size }) => {
                             const sizeResized = size / 60 / 60 / 2;
@@ -95,26 +87,26 @@ console.log("Celestial is:", Celestial);
                                 [ra - sizeResized, dec - sizeResized],
                             ]
                         }),
-                }
-            }  
-        ]
+                },
+            },
+        ],
     };
 
     const lineStyle = { 
         stroke: "#f00", 
         fill: "rgba(255, 204, 204, 0.4)",
-        width: 3 
+        width: 3,
     };
-    // const textStyle = { 
-    //     fill: "#f00", 
-    //     font: "bold 15px Helvetica, Arial, sans-serif", 
-    //     align: "center", 
-    //     baseline: "bottom" 
-    // };
+    const lineStyleCurrent = { 
+        stroke: "#00f", 
+        fill: "rgba(204, 204, 255, 0.8)",
+        width: 5,
+    };
 
     function callbackFunc(error, json) {
         if (error) return console.warn(error);
         // Load the geoJSON file and transform to correct coordinate system, if necessary
+
         var asterism = Celestial.getData(jsonShapes, config.transform);
         
         // Add to celestial objects container in d3
@@ -122,15 +114,17 @@ console.log("Celestial is:", Celestial);
             .data(asterism.features)
             .enter().append("path")
             .attr("class", "ast"); 
+
         // Trigger redraw to display changes
         Celestial.redraw();
     }
 
     function redrawFunc() {
         // Select the added objects by class name as given previously
-        Celestial.container.selectAll(".ast").each(function(d) {
-            // Set line styles 
+        Celestial.container.selectAll(".ast").each(d => {
+            // Set line styles
             Celestial.setStyle(lineStyle);
+            isFirst = false;
             // Project objects on map
             Celestial.map(d);
             // draw on canvas
@@ -145,7 +139,7 @@ console.log("Celestial is:", Celestial);
                 Celestial.setTextStyle(textStyle);
                 // and draw text on canvas
                 Celestial.context.fillText(d.properties.n, pt[0], pt[1]);
-            }      
+            }
         });
     }
 

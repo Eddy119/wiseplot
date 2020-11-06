@@ -1,7 +1,7 @@
 const CSV_DELIM = ",";
 
 async function exportAsCsv() {
-    const { paramsHistory } = await browser.storage.sync.get({ paramsHistory: [] });
+    const { paramsHistory } = await browser.storage.local.get({ paramsHistory: [] });
 
     const lines = [];
 
@@ -22,4 +22,13 @@ async function exportAsCsv() {
     });
 }
 
+async function importCsv() {
+    console.log("baka")
+}
+
+async function deletelocal() {
+    browser.storage.local.clear();
+}
+
 document.getElementById("export-btn").addEventListener("click", exportAsCsv);
+document.getElementById("deletelocal-btn").addEventListener("click", deletelocal);
