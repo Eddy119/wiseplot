@@ -30,7 +30,8 @@
                 "content/wiseplot.js"
             ],
             "css": [
-                "content/wiseplot.css"
+                "content/wiseplot.css",
+                "content/celestial.css"
             ]
         }
     ],
