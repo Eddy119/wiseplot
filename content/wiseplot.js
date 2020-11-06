@@ -57,7 +57,34 @@ console.log("Celestial is:", Celestial);
         width: 900,
         center: [-65, 0],
         container: "wiseplot",
-        datapath: "https://ofrohn.github.io/data/",
+        // datapath: "https://ofrohn.github.io/data/",
+        form: true,
+        formFields: {"location": true,  // Set visiblity for each group of fields with the respective id
+               "general": true,  
+               "stars": true,  
+               "dsos": true,  
+               "constellations": true,  
+               "lines": true,  
+               "other": true,  
+               "download": true},  
+        advanced: true,     // Display fewer form fields if false 
+        lines: {  // Display & styles for graticule & some planes
+            graticule: {
+                show: true, stroke: "#cccccc", width: 0.6, opacity: 0.8,   
+                // grid values: "outline", "center", or [lat,...] specific position
+                lon: {
+                    pos: ["center"], fill: "#eee", font: "10px Helvetica, Arial, sans-serif"
+                }, 
+                // grid values: "outline", "center", or [lon,...] specific position
+                lat: {
+                    pos: ["center"], fill: "#eee", font: "10px Helvetica, Arial, sans-serif"
+                }
+            },    
+            equatorial: { show: true, stroke: "#aaaaaa", width: 1.3, opacity: 0.7 },  
+            ecliptic: { show: true, stroke: "#66cc66", width: 1.3, opacity: 0.7 },     
+            galactic: { show: false, stroke: "#cc6666", width: 1.3, opacity: 0.7 },    
+            supergalactic: { show: false, stroke: "#cc66cc", width: 1.3, opacity: 0.7 }
+        }
     };
 
     // Display map with the configuration above or any subset thereof
