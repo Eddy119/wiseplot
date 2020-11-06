@@ -68,6 +68,7 @@ console.log("Celestial is:", Celestial);
 
     const config = {
         width: 900,
+        projection: "orthographic",
         center: [-65, 0],
         container: "wiseplot",
         // datapath: "https://ofrohn.github.io/data/",
