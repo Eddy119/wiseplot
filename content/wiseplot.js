@@ -67,7 +67,7 @@ console.log("Celestial is:", Celestial);
     document.getElementById("wiseplot").addEventListener("mousemove", getPosition, false);
 
     const config = {
-        width: 900,
+        width: 500,
         projection: "orthographic",
         center: [-65, 0],
         container: "wiseplot",
