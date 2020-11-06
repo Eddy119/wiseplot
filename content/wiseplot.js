@@ -52,36 +52,19 @@ console.log("Celestial is:", Celestial);
     const pawnstars = document.getElementById("pawnstarsLink");
     pawnstars.parentElement.insertBefore(map, pawnstars);
     map.setAttribute("id","wiseplot"); 
-
-    const mousepos = document.createElement("div");
+    
+    const mousepos=document.createElement("div");
     pawnstars.parentElement.insertBefore(mousepos, pawnstars);
-    mousepos.setAttribute("id", "mousepos");
+    mousepos.setAttribute("id","mousepos");
     
     function getPosition(e) {
         const x = e.offsetX;
         const y = e.offsetY;
         const inv = Celestial.mapProjection.invert([x, y]);
-        // return inv; // [right ascension -180...180 degrees, declination -90...90 degrees]
         mousepos.textContent = inv;
-    }
+// [right ascension -180...180 degrees, declination -90...90 degrees]
+     }
     document.getElementById("wiseplot").addEventListener("mousemove", getPosition, false);
-
-// below is parky poop code, for archive   
-    //     const mousepos=document.createElement("div");
-//     // Element.textContent = getPosition;
-//     pawnstars.parentElement.insertBefore(mousepos, pawnstars);
-//     mousepos.setAttribute("id","mousepos");
-//     // document.getElementById("mousepos").textContent = inv;
-    
-//      function getPosition(e) {
-//         // var p = document.getElementById ("wiseplot").getBoundingClientRect(),
-//             const x = e.offsetX;
-//             const y = e.offsetY;
-//             const inv = Celestial.mapProjection.invert([x, y]);
-// //            return inv; // [right ascension -180...180 degrees, declination -90...90 degrees]
-// //            document.getElementById("mousepos").textContent = inv;
-//      }
-//     document.getElementById("wiseplot").addEventListener("mousemove", getPosition, false);
 
     const config = {
         width: 900,
